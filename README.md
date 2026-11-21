@@ -1,18 +1,25 @@
-# TRT Çocuk Yarışçı (2009) - Bug Fix & Server Bypass
+# TRT Çocuk Yarışçı (2009) - hata düzeltmeleri
 
-Bu proje, 2009 yapımı "TRT Çocuk Yarışçı" oyununun decompiled edilmiş kaynak kodlarını da içeren ve araç seçim bug'ı fixlenmiş halidir.
+2009'da çıkan TRT Çocuk Yarışçı oyununun decompile edilmiş kaynakları ve modern
+bilgisayarlarda oyunu kırılır hâle getiren üç hatanın düzeltilmiş hâli.
 
+Oyun yüksek FPS'te çalıştığı için birkaç şey bozuluyor. Düzeltmelerin hepsi bununla
+ilgili.
 
+**Araç seçme ekranında Enter çalışmıyordu.** Klavye girdisi `FixedUpdate` içinde
+dinleniyordu ve yüksek FPS'te iki kare arasına sıkışıp kayboluyordu. Dinleyiciler
+`Update`'e taşındı. Artık Enter'a hızlı basmaya gerek yok, tek basışta seçiyor.
 
- **Neler Düzeltildi?**
+**Araçlar fırıldak gibi dönüyordu.** Aynı sebep: menüdeki dönme animasyonu kare
+sayısına bağlıydı, saniyede yüzlerce tur atıyordu. Animasyon FPS'ten bağımsız hâle
+getirildi, araçlar normal hızda dönüyor.
 
-1. **Araç Seçim Ekranı Enter (Giriş) Tuşu Bug'ı:**
-   - Günümüz bilgisayarları orijinal oyunda yüksek FPS aldığı için `FixedUpdate` döngüsü arasına sıkışan klavye girdileri (özellikle araç seçmek için kullanılan Enter tuşu) yakalanamıyordu. Girdi dinleyicileri `Update` fonksiyonuna taşınarak bu sorun tamamen çözüldü. Artık çok hızlı basmaya gerek kalmadan tek bir seferde araç seçilebiliyor.
+**Sunucu istekleri.** Oyun açılışta kullanıcı adı ve şifre soruyor, sonra bunları ve
+bitiş skorunu ölü bir adrese yolluyordu. Bir işe yaramıyordu, TRT'ye boşuna istek
+gitmesin diye kapatıldı.
 
-2. **Sunucu Sorunları & Bypass:**
-   - Oyun açıldığında kullanıcı adı ve şifre soruyor, gelen kullanıcı adı şifreyi ve aynı zamanda oyun sonunda yaptığımız skoru yollarken geçersiz sunucuya yolluyordu. Zararı yoktu ama trt'ye durduk yere istek atmaya gerek yok.
-3. **Araç Seçim Ekranı Animasyon Hızı:**
-   - Yine yüksek fps'ten dolayı araç seçim menüsünde araçlar saniyede yüzlerce tur atıp fırıldak gibi dönüyordu. Bu animasyonlar FPS'ten bağımsız hale getirilerek araçların normal hızda dönmesi sağlandı.
+**Soru ekranı beklemesi.** Kum saati toplayınca açılan soru ekranında cevaptan sonra
+3.5 saniye bekletiyordu. 1 saniyeye indirildi.
 
-4. **Soru Ekranı Bekleme Süresi:**
-   - Yarış içindeki kum saatlerini topladığımızda açılan soru ekranında cevap verdikten sonraki "gereksiz uzun (yaklaşık 3.5 saniye)" bekleme süresi 1 saniyeye düşürüldü. Artık soruları daha hızlı cevaplayabiliyoruz.
+Oyun tarayıcıda çalışacak şekilde yeniden yazılıyor: `yarisci-web` altında three.js
+sürümü var.
