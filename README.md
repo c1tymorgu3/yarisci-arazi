@@ -25,8 +25,4 @@ gitmesin diye kapatıldı.
 **Soru ekranı beklemesi.** Kum saati toplayınca açılan soru ekranında cevaptan sonra
 3.5 saniye bekletiyordu. 1 saniyeye indirildi.
 
-Oyun tarayıcıda çalışıyor: Unity 2022.3 WebGL build'i `port/yarisciarazi/Builds/WebGL`
-altında. Build Brotli sıkıştırmalı, sunucunun `Content-Encoding: br` ve `.wasm` için
-`application/wasm` başlığını göndermesi gerekiyor.
-
 Port: [c1tymorgu3](https://github.com/c1tymorgu3)
